@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хочешь быть моей валентинкой? 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <main class="card" id="mainCard">
+      <div class="photo-wrapper">
+        <!-- Замени src на photo.jpg и добавь своё фото в папку -->
+        <img src="photo.jpg" alt="Наше фото" class="photo" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&q=80'" />
+      </div>
+      <p class="greeting">С днём святого Валентина!</p>
+      <h1 class="question">Хочешь быть моей валентинкой?</h1>
+      <div class="buttons-wrapper">
+        <button type="button" class="btn btn-yes" id="btnYes">Да</button>
+        <button type="button" class="btn btn-no" id="btnNo">Нет</button>
+      </div>
+    </main>
+
+    <div class="success" id="successCard" hidden>
+      <div class="hearts" aria-hidden="true"></div>
+      <p class="success-title">Я знал! 💕</p>
+      <p class="success-text">Люблю тебя. Счастливого дня влюблённых!</p>
+    </div>
+  </div>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
