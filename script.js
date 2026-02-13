@@ -99,7 +99,7 @@
 
   function showRejectVideo() {
     videoOverlay.hidden = false;
-    rejectVideo.play().catch(function () {});
+    rejectVideo.play().catch(function () { });
   }
 
   function hideRejectVideo() {

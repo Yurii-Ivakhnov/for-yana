@@ -168,6 +168,15 @@ body {
   }
 }
 
+.success-dog {
+  display: block;
+  width: 180px;
+  height: auto;
+  margin: 0 auto 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.2);
+}
+
 .success-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 2rem;
