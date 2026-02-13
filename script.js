@@ -4,6 +4,9 @@
   const mainCard = document.getElementById('mainCard');
   const successCard = document.getElementById('successCard');
   const buttonsWrapper = document.querySelector('.buttons-wrapper');
+  const videoOverlay = document.getElementById('videoOverlay');
+  const rejectVideo = document.getElementById('rejectVideo');
+  const videoClose = document.getElementById('videoClose');
 
   const noButtonTexts = [
     'Нет',
@@ -18,7 +21,9 @@
     'Я жду',
   ];
 
+  const NO_REJECT_LIMIT = 15;
   let noClickCount = 0;
+  let noRejectCount = 0;
   let escapingMode = false;
 
   function moveNoButton() {
@@ -92,11 +97,27 @@
     fireConfetti();
   }
 
-  btnNo.addEventListener('mouseover', function () {
-    if (escapingMode) moveNoButton();
-  });
-  btnNo.addEventListener('click', function (e) {
-    e.preventDefault();
+  function showRejectVideo() {
+    videoOverlay.hidden = false;
+    rejectVideo.play().catch(function () {});
+  }
+
+  function hideRejectVideo() {
+    videoOverlay.hidden = true;
+    rejectVideo.pause();
+    rejectVideo.currentTime = 0;
+  }
+
+  let lastNoInteraction = 0;
+  function onNoClick() {
+    const now = Date.now();
+    if (now - lastNoInteraction < 300) return;
+    lastNoInteraction = now;
+    noRejectCount++;
+    if (noRejectCount >= NO_REJECT_LIMIT) {
+      showRejectVideo();
+      return;
+    }
     if (!escapingMode) {
       activateEscaping();
       updateNoButtonText();
@@ -104,17 +125,21 @@
       moveNoButton();
       updateNoButtonText();
     }
+  }
+
+  btnNo.addEventListener('click', function (e) {
+    e.preventDefault();
+    onNoClick();
   });
   btnNo.addEventListener('touchstart', function (e) {
     e.preventDefault();
-    if (!escapingMode) {
-      activateEscaping();
-      updateNoButtonText();
-    } else {
-      moveNoButton();
-      updateNoButtonText();
-    }
+    onNoClick();
   }, { passive: false });
+
+  if (videoClose) {
+    videoClose.addEventListener('click', hideRejectVideo);
+  }
+  rejectVideo.addEventListener('ended', hideRejectVideo);
 
   btnYes.addEventListener('click', showSuccess);
 })();

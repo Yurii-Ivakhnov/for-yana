@@ -33,6 +33,15 @@
 
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
+  <!-- Полноэкранное видео после 15 отказов. Замени src на путь к твоему видео -->
+  <div class="video-overlay" id="videoOverlay" hidden>
+    <video id="rejectVideo" autoplay playsinline controls>
+      <source src="video.mp4" type="video/mp4" />
+      Твой браузер не поддерживает видео.
+    </video>
+    <button type="button" class="video-close" id="videoClose" aria-label="Закрыть">×</button>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
